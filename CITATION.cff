@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the paper below."
+title: "Machine learning for plant stress classification with bioimpedance spectroscopy"
+authors:
+  - family-names: "Al Haj Ali"
+    given-names: "Haydr"
+preferred-citation:
+  type: article
+  title: "On generalization and distributional shift in water and iron plant stress classification using bioimpedance spectroscopy"
+  authors:
+    - {family-names: "Al Haj Ali", given-names: "Haydr"}
+    - {family-names: "Ibba", given-names: "Pietro"}
+    - {family-names: "Petti", given-names: "Luisa"}
+    - {family-names: "Fragouli", given-names: "Despina"}
+    - {family-names: "Bartolozzi", given-names: "Chiara"}
+    - {family-names: "Decherchi", given-names: "Sergio"}
+    - {family-names: "Athanassiou", given-names: "Athanassia"}
+  journal: "Smart Agricultural Technology"
+  volume: 15
+  start: 102510
+  year: 2026
+  doi: "10.1016/j.atech.2026.102510"
