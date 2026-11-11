@@ -94,20 +94,20 @@ A live version of the dashboard is available [here](https://bioimpedance-plant-s
 ## Getting started
 
 ```bash
-git clone https://github.com/haydar175/Machine-learning-for-supporting-robots-soil-monitoring.git
-cd Machine-learning-for-supporting-robots-soil-monitoring
+git clone https://github.com/haydar175/Data-Science-for-Plant-Stress-Bioimpedance-under-Distribution-Shift.git
+cd Data-Science-for-Plant-Stress-Bioimpedance-under-Distribution-Shift
 pip install -r requirements.txt
 ```
 
 ### Data
 
-The data are hosted on Hugging Face as a gated dataset: **[HF_DATASET_URL](HF_DATASET_URL)**. Log in, open the dataset page, fill in the access request, and wait for approval by the authors. Once approved, download the three files:
+The data are hosted on Hugging Face as a gated dataset: **[haydar175/Plants-bioimpedance-stress](https://huggingface.co/datasets/haydar175/Plants-bioimpedance-stress)**. Log in, open the dataset page, fill in the access request, and wait for approval by the authors. Once approved, download the three files:
 
 ```python
 from huggingface_hub import hf_hub_download
 
 for name in ["Water_Stress.npz", "Iron_Stress.npz", "New_Data.npz"]:
-    hf_hub_download("HF_DATASET_ID", name, repo_type="dataset", local_dir=".")
+    hf_hub_download("haydar175/Plants-bioimpedance-stress", name, repo_type="dataset", local_dir=".")
 ```
 
 | File | Content | `X` | Plants |
@@ -118,7 +118,7 @@ for name in ["Water_Stress.npz", "Iron_Stress.npz", "New_Data.npz"]:
 
 > **Remark.** `New_Data.npz` stores magnitude and phase, not the real and imaginary part used by the original files. The domain adaptation script converts it with Re(Z) = |Z|·cos(φ) and Im(Z) = |Z|·sin(φ), with φ in radians.
 
-Every file also holds `y` (three classes) and `plant_ids`, with 672 spectra per plant, 224 per class. Frequencies are log-spaced from 100 Hz to 10 MHz.
+Every file also holds `y` (0 = control, 1 = early stress, 2 = late stress) and `plant_ids`, with 672 spectra per plant, 224 per class. Frequencies are log-spaced from 100 Hz to 10 MHz.
 
 The domain adaptation script reads the `.npz` files directly. The notebooks read the raw CSV export instead, one spectrum per file, in this layout relative to the folder you run them from:
 
