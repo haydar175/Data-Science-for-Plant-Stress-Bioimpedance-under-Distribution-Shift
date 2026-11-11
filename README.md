@@ -85,6 +85,8 @@ A live version of the dashboard is available [here](https://bioimpedance-plant-s
 │   ├── Open_tSNE.ipynb               # t-SNE embedding per plant
 │   └── Principal_Path/               # principal path and stress gauge
 ├── Iron_Stress/                      # same layout as Water_Stress
+├── Cross_Validation/
+│   └── lopo_cross_validation.py      # leave-one-plant-out directly from the .npz files
 ├── Domain_Adaptation/
 │   └── lot_cross_validation.py       # optimal transport + per-plant evaluation on OOD data
 ├── figures/
@@ -120,7 +122,7 @@ for name in ["Water_Stress.npz", "Iron_Stress.npz", "New_Data.npz"]:
 
 Every file also holds `y` (0 = control, 1 = early stress, 2 = late stress) and `plant_ids`, with 672 spectra per plant, 224 per class. Frequencies are log-spaced from 100 Hz to 10 MHz.
 
-The domain adaptation script reads the `.npz` files directly. The notebooks read the raw CSV export instead, one spectrum per file, in this layout relative to the folder you run them from:
+The two Python scripts (`Cross_Validation/` and `Domain_Adaptation/`) read the `.npz` files directly. The notebooks read the raw CSV export instead, one spectrum per file, in this layout relative to the folder you run them from:
 
 ```
 Dataset/
@@ -138,6 +140,7 @@ Each CSV has 200 rows (frequencies); columns 3 and 4 hold the real and imaginary
 | Leave-one-plant-out cross-validation | `*/All_Plants/Cross_Validation.ipynb`, `*/3Plants/Cross_Validation.ipynb` |
 | t-SNE embedding | `*/Open_tSNE.ipynb` |
 | Principal path and gauge | `python */Principal_Path/CC_PP_Interactive.py` |
+| Leave-one-plant-out from the `.npz` files | `python Cross_Validation/lopo_cross_validation.py --data Water_Stress.npz --stress water` (or `--data Iron_Stress.npz --stress iron`) |
 | Domain adaptation | `python Domain_Adaptation/lot_cross_validation.py --original Water_Stress.npz --ood New_Data.npz` |
 
 For the principal path, pick the start and end points as described in the `readme.txt` of each `Principal_Path` folder. The domain adaptation script prints the accuracy for every OOD plant and saves the confusion matrices in `results/`.
